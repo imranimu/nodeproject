@@ -38,6 +38,12 @@ app.post("/api/v1/contactform", async (req, res) => {
   res.json(createdUser);
 });
 
+app.get("/api/v1/getuser", async (req, res) =>{
+    const AllData = await MyModel.find({}); 
+
+    res.send(AllData);
+})
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
