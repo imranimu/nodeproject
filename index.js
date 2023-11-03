@@ -70,8 +70,6 @@ app.get("/api/v1/getstudents", async (req, res) =>{
     res.send(AllStudents);
 }); 
 
-
-
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
