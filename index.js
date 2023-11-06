@@ -46,6 +46,18 @@ app.post("/api/v1/contactform", async (req, res) => {
     res.json(createdUser);
 });
 
+app.post("/api/v1/contactformupdate", async (req, res) => {
+    const { name, email, phone, age } = req.body;
+    const createdUser = new MyModel({
+        name,
+        email,
+        phone,
+        age        
+    });
+    await createdUser.save();
+    res.json(createdUser);
+});
+
 app.post("/api/v1/student", async (req, res) => {
     const { name, email, phone, age } = req.body;  
     const createdUser = new Student({
