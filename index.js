@@ -34,7 +34,9 @@ app.get('/api/v1/getStudents', async (req, res) => {
 });
 
 // Single Student Information
+
 app.get('/api/v1/getStudents/:id', async (req, res) => {
+
     if (req.params.id.length != 24) return res.json({ Message: "Please check the Id" })
     const studentId = await Student.findById(req.params.id);
 
@@ -42,9 +44,11 @@ app.get('/api/v1/getStudents/:id', async (req, res) => {
     const AllStudents = await Student.findById(req.params.id);
 
     res.json(AllStudents)
+
 });
 
 // Create (POST) operation
+
 app.post('/api/v1/student', async (req, res) => {
     const errors = {}
     const { name, email, phone, age } = req.body;
@@ -72,6 +76,7 @@ app.post('/api/v1/student', async (req, res) => {
 });
 
 // Update (PUT) operation
+
 app.put('/api/v1/student/:id', async (req, res) => {
     if (req.params.id.length != 24) return res.json({ Message: "Please check the Id" })
     const studentId = await Student.findById(req.params.id);
@@ -92,15 +97,20 @@ app.delete('/api/v1/student/:id', async (req, res) => {
     await Student.findByIdAndDelete(req.params.id)
 
     res.json({ message: "Deleted" })
+
 });
 
 // Delete (DELETE) operation [ WHOLE STUDENTS]
 app.delete('/api/v1/student', async (req, res) => {
 
     await Student.deleteMany({});
+
     res.json({ message: "Delete Whole Student Documents" })
+
 });
 
 app.listen(port, () => {
+
     console.log(`Server is running on http://localhost:${port}`);
+    
 });
