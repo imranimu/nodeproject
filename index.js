@@ -49,6 +49,7 @@ app.get('/api/v1/getStudents/:id', async (req, res) => {
 // Create (POST) operation
 app.post('/api/v1/student', async (req, res) => {
     const errors = {}
+
     const { name, email, phone, age } = req.body;
 
     const existingEmail = await Student.findOne({ email: req.body.email });
@@ -70,12 +71,15 @@ app.post('/api/v1/student', async (req, res) => {
         age,
     });
     await createdUser.save();
+
     res.json(createdUser);
 });
 
 // Update (PUT) operation
 app.put('/api/v1/student/:id', async (req, res) => {
+
     if (req.params.id.length != 24) return res.json({ Message: "Please check the Id" })
+    
     const studentId = await Student.findById(req.params.id);
 
     if (!studentId) return res.json({ Message: "Please check the Id" })
